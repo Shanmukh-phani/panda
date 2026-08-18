@@ -7,6 +7,10 @@ const router = Router();
 
 router.use(rateLimit(60_000, 30));
 
+router.get('/', (_req: Request, res: Response) => {
+  res.json({ ok: true, service: 'panda-auth' });
+});
+
 const bearer = (req: Request) => {
   const header = String(req.headers.authorization || '');
   return header.startsWith('Bearer ') ? header.slice(7) : '';
